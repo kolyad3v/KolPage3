@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useControls } from 'leva'
 
 const Fox = () => {
-	const model = useGLTF('./Fox/glTF-Binary/Fox.glb')
+	const model = useGLTF('./Fox.glb')
 	const animation = useAnimations(model.animations, model.scene)
 
 	const { animationName } = useControls({
