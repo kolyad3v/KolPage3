@@ -3,28 +3,46 @@ import {
 	Float,
 	Environment,
 	ContactShadows,
-	Text3D,
+	Text,
+	Sky,
+	Cloud,
 } from '@react-three/drei'
 import { Cup } from './Cup'
 import { Perf } from 'r3f-perf'
 import { Model } from './Model'
 import { Suspense } from 'react'
-// import { Laptop } from './Laptop'
 import Placeholder from './Placeholder'
-import { LaptopDeep } from './LaptopDeep'
-import Fox from './Fox'
+import { Laptop } from './Laptop'
+import { GitHubIcon } from './GitHubIcon'
 
 export default function Experience() {
+	const eventHandler = (e?: Event) => {
+		console.log(e)
+		e?.stopPropagation()
+		window.open('https://github.com/kolyad3v', '_blank')
+	}
+
 	return (
 		<>
-			<Perf position='top-left' />
-
-			<Environment preset='forest' />
-
-			<color
-				args={['#FFF4E6']}
-				attach='background'
+			<Sky
+				distance={450000}
+				sunPosition={[0, 1, 0]}
+				inclination={0}
+				azimuth={0.25}
 			/>
+			<Environment preset='city' />
+
+			<Text
+				font='./majorMono.woff'
+				fontSize={0.2}
+				position={[2.5, 1, -0.5]}
+				rotation-y={-1}
+				color={'black'}
+				// // maxWidth={2}
+			>
+				{'nick gillham\nvue-react-3js-c#'}
+			</Text>
+
 			<Suspense fallback={<Placeholder position={[0, -1, 0]} />}>
 				<PresentationControls
 					global
@@ -43,34 +61,19 @@ export default function Experience() {
 							rotation={[0.1, Math.PI, 0]}
 							position={[0, 0.55, -1.15]}
 						/>
-						{/* <Laptop /> */}
-						<LaptopDeep />
+						<Laptop />
+						{/* <LaptopDeep /> */}
 						<Cup />
-						<Model />
-						<Fox />
-						<Text3D
-							font='./mono.json'
-							// fontSize={1}
-							size={0.15}
-							lineHeight={1}
-							letterSpacing={0}
-							position={[1.75, 1, -0.5]}
-							rotation-y={-1}
-							height={0.04}
-
-							// // maxWidth={2}
-						>
-							{/* <meshStandardMaterial color={'#fb8500'} /> */}
-							<meshStandardMaterial color='orange' />
-							{'  nick gillham\nvue-react-3js-c#'}
-						</Text3D>
 					</Float>
 				</PresentationControls>
 			</Suspense>
+			<GitHubIcon eventHandler={eventHandler} />
+
+			<Model />
 			<ContactShadows
 				position-y={-1.4}
 				opacity={1}
-				scale={10}
+				scale={11}
 				blur={2.4}
 			/>
 		</>

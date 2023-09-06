@@ -16,7 +16,7 @@ export const Model: FC<{}> = () => {
 
 	return (
 		<>
-			<Clone
+			{/* <Clone
 				object={model.scene}
 				position={[3, -0.5, -1]}
 				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 5]}
@@ -27,11 +27,11 @@ export const Model: FC<{}> = () => {
 				position={[6, -0.5, -1]}
 				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 5]}
 				scale={[2, 2, 2]}
-			></Clone>
+			></Clone> */}
 			<Clone
 				object={model.scene}
 				position={[4, -0.5, -3]}
-				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 5]}
+				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 7]}
 				scale={[2, 2, 2]}
 			></Clone>
 		</>
