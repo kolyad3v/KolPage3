@@ -25,23 +25,19 @@ export const GitHubIcon: FC<IProps> = (props: IProps) => {
 
 	return (
 		<>
-			<Float>
-				<primitive
-					onClick={props.eventHandler}
-					onPointerEnter={() => {
-						console.log('enter')
-						canvas[0].classList.add('pointer')
-					}}
-					onPointerLeave={() => {
-						console.log('leave')
-						canvas[0].classList.remove('pointer')
-					}}
-					object={model.scene}
-					position={[-2.5, 0.5, -1]}
-					rotation={[0, Math.PI / 2, 0]}
-					scale={[0.32, 0.32, 0.32]}
-				/>
-			</Float>
+			<primitive
+				onClick={props.eventHandler}
+				onPointerEnter={() => {
+					console.log('enter')
+					canvas[0].classList.add('pointer')
+				}}
+				onPointerLeave={() => {
+					console.log('leave')
+					canvas[0].classList.remove('pointer')
+				}}
+				object={model.scene}
+				scale={[0.32, 0.32, 0.32]}
+			/>
 		</>
 	)
 }

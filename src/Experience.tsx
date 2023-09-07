@@ -6,31 +6,32 @@ import {
 	Text,
 	Sky,
 	Cloud,
+	OrbitControls,
 } from '@react-three/drei'
+
 import { Cup } from './Cup'
 import { Perf } from 'r3f-perf'
 import { Model } from './Model'
-import { Suspense } from 'react'
+import { Suspense, useRef } from 'react'
 import Placeholder from './Placeholder'
 import { Laptop } from './Laptop'
-import { GitHubIcon } from './GitHubIcon'
+import { RectAreaLight } from 'three'
+import { PhysicsFun } from './PhysicsFun'
 
 export default function Experience() {
-	const eventHandler = (e?: Event) => {
-		console.log(e)
-		e?.stopPropagation()
-		window.open('https://github.com/kolyad3v', '_blank')
-	}
-
 	return (
 		<>
-			<Sky
+			<Perf
+				top
+				left
+			/>
+			{/* <Sky
 				distance={450000}
 				sunPosition={[0, 1, 0]}
 				inclination={0}
 				azimuth={0.25}
 			/>
-			<Environment preset='city' />
+			<Environment preset='city' /> */}
 
 			<Text
 				font='./majorMono.woff'
@@ -42,6 +43,16 @@ export default function Experience() {
 			>
 				{'nick gillham\nvue-react-3js-c#'}
 			</Text>
+			{/* <OrbitControls makeDefault /> */}
+
+			<directionalLight
+				castShadow
+				position={[1, 2, 3]}
+				intensity={1.5}
+			/>
+			<ambientLight intensity={0.5} />
+
+			{/* <PhysicsFun /> */}
 
 			<Suspense fallback={<Placeholder position={[0, -1, 0]} />}>
 				<PresentationControls
@@ -62,13 +73,10 @@ export default function Experience() {
 							position={[0, 0.55, -1.15]}
 						/>
 						<Laptop />
-						{/* <LaptopDeep /> */}
 						<Cup />
 					</Float>
 				</PresentationControls>
 			</Suspense>
-			<GitHubIcon eventHandler={eventHandler} />
-
 			<Model />
 			<ContactShadows
 				position-y={-1.4}

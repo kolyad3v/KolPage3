@@ -1,7 +1,7 @@
 // import { useLoader } from '@react-three/fiber'
 // import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { Clone, useGLTF } from '@react-three/drei'
+import { Clone, Float, useGLTF } from '@react-three/drei'
 import { FC } from 'react'
 
 export const Model: FC<{}> = () => {
@@ -28,12 +28,14 @@ export const Model: FC<{}> = () => {
 				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 5]}
 				scale={[2, 2, 2]}
 			></Clone> */}
-			<Clone
-				object={model.scene}
-				position={[4, -0.5, -3]}
-				rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 7]}
-				scale={[2, 2, 2]}
-			></Clone>
+			<Float>
+				<Clone
+					object={model.scene}
+					position={[4, -0.5, -3]}
+					rotation={[Math.PI / 4, Math.PI / -6, Math.PI / 7]}
+					scale={[2, 2, 2]}
+				/>
+			</Float>
 		</>
 	)
 }
