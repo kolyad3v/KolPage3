@@ -20,7 +20,7 @@ export const Laptop: FC<{}> = () => {
 					position={[0, 1.56, -1.4]}
 					rotation-x={-0.256}
 				>
-					<iframe src='https://nickgillham.dev' />
+					<iframe src='https://tubular-khapse-b9fbb3.netlify.app' />
 				</Html>
 			</primitive>
 		</>
