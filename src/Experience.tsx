@@ -1,25 +1,16 @@
-import {
-	PresentationControls,
-	Float,
-	ContactShadows,
-	Text,
-	OrbitControls,
-	Stage,
-	Environment,
-	Sky,
-} from '@react-three/drei'
+import { PresentationControls, Sky, Text } from '@react-three/drei'
 
-import { FC, Suspense, useMemo, useRef, useState } from 'react'
-import Placeholder from './Placeholder'
+import { FC, Suspense, useState } from 'react'
+
 import { Laptop } from './Laptop'
 import { Vector3 } from 'three'
-import { PhysicsFun } from './PhysicsFun'
+
 import { useFrame } from '@react-three/fiber'
 
 import { Icons } from './Icons'
-import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
+import { Physics, RigidBody } from '@react-three/rapier'
 import { GitHubIcon } from './GitHubIcon'
-import { Leva, useControls } from 'leva'
+import { useControls } from 'leva'
 import { Loader } from './Loader'
 import MagGlass from './MagGlass'
 
@@ -41,12 +32,11 @@ export const Experience: FC<{}> = () => {
 			}, 3000)
 		}
 	}
-	const zoomOutFromScreen = () => {}
 
 	const [openGitHubHatch, setOpenGitHubHatch] = useState(false)
 
 	function Rig() {
-		return useFrame(({ camera, mouse }) => {
+		return useFrame(({ camera }) => {
 			vec.set(-0.014147792215132737, 1.636652515918077, 3.5)
 			camera.position.lerp(vec, 0.025)
 			camera.lookAt(0, 0, 0)
@@ -54,7 +44,7 @@ export const Experience: FC<{}> = () => {
 	}
 
 	function RigOut() {
-		return useFrame(({ camera, mouse }) => {
+		return useFrame(({ camera }) => {
 			vec.set(-4, 1, 5)
 			camera.position.lerp(vec, 0.025)
 			camera.lookAt(0, 0, 0)

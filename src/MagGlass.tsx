@@ -1,6 +1,6 @@
 import { useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
-import { FC, useMemo, useRef, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { animated, config, useSpring } from '@react-spring/three'
 
 interface IMagGlassProps {

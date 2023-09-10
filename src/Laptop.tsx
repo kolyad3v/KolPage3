@@ -1,5 +1,5 @@
 import { Html, useGLTF } from '@react-three/drei'
-import { FC, useRef, useState } from 'react'
+import { FC, useRef } from 'react'
 
 export const Laptop: FC<{}> = () => {
 	const computer = useGLTF('./laptop.gltf')

@@ -1,12 +1,7 @@
-import { animated, config, useSpring } from '@react-spring/three'
-import {
-	ContactShadows,
-	Float,
-	OrbitControls,
-	useGLTF,
-} from '@react-three/drei'
-import { Leva, useControls } from 'leva'
-import { useRef, useState } from 'react'
+// import { config, useSpring } from '@react-spring/three'
+import { ContactShadows, Float, useGLTF } from '@react-three/drei'
+import { useControls } from 'leva'
+import { useRef } from 'react'
 
 export const Icons = () => {
 	const CSharp = useGLTF('./CSharp.glb')
@@ -37,8 +32,6 @@ export const Icons = () => {
 		console.log('vue clicked')
 		console.log(vueMod.current)
 	}
-	const [active, setActive] = useState(false)
-	const { y } = useSpring({ y: active ? 3 : 1, config: config.wobbly })
 
 	return (
 		<>
@@ -46,15 +39,6 @@ export const Icons = () => {
 				speed={0.8}
 				floatIntensity={0.2}
 			>
-				{/* <animated.mesh
-					position={[-1, 0, 3]}
-					rotation-y={y}
-					onClick={() => setActive(!active)}
-				>
-					<boxGeometry />
-					<meshPhongMaterial color='royalblue' />
-				</animated.mesh> */}
-
 				<primitive
 					ref={vueMod}
 					object={vueModel.scene}
