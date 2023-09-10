@@ -1,45 +1,63 @@
-// import { useLoader } from '@react-three/fiber'
-// import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-import { Float, Sparkles, useGLTF } from '@react-three/drei'
-import { FC } from 'react'
+import { useGLTF } from '@react-three/drei'
+import { RigidBody } from '@react-three/rapier'
+import { useControls } from 'leva'
+import { FC, useState } from 'react'
 
 interface IProps {
-	eventHandler: (e?: Event) => void
+	eventHandler?: (e?: Event) => void
+	openGitHubHatch: boolean
 }
 export const GitHubIcon: FC<IProps> = (props: IProps) => {
-	// const model = useLoader(GLTFLoader, './model.gltf', (loader) => {
-	// 	const dracoLoader = new DRACOLoader()
-	// NEEDS DRACO FOLDER IN PUBLIC !
-	// 	dracoLoader.setDecoderPath('./draco/')
-	// 	loader.setDRACOLoader(dracoLoader)
-	// })
-
-	const model = useGLTF('./github-icon.glb')
-	// console.log(model)
-
-	// const [hovered, setHovered] = useState<boolean>(false)
-	// useCursor(hovered, 'pointer')
-
 	const canvas = document.getElementsByTagName('canvas')
+	const gitHubPosition = useControls('github', {
+		x: 4.8,
+		y: 0.3,
+		z: 0,
+		scale: 0.3,
+		rotation: 4.54,
+	})
+	const githubModel = useGLTF('./github.glb')
+	const eventHandler = () => {
+		window.open('https://github.com/kolyad3v', '_blank')
+	}
 
-	return (
-		<>
-			<primitive
-				onClick={props.eventHandler}
-				onPointerEnter={() => {
-					console.log('enter')
-					canvas[0].classList.add('pointer')
-				}}
-				onPointerLeave={() => {
-					console.log('leave')
-					canvas[0].classList.remove('pointer')
-				}}
-				object={model.scene}
-				scale={[0.32, 0.32, 0.32]}
-			/>
-		</>
-	)
+	const [fallSound] = useState(() => new Audio('./fall.mp3'))
+
+	const playAudio = () => {
+		fallSound.currentTime = 0
+		fallSound.volume = 0.3
+		fallSound.play()
+	}
+	if (props.openGitHubHatch) {
+		return (
+			<>
+				<RigidBody
+					position={[1.2, 3, 0.5]}
+					rotation={[0, 4.54, 0.5]}
+					restitution={0.1}
+					onCollisionEnter={playAudio}
+				>
+					<primitive
+						onClick={eventHandler}
+						onPointerEnter={() => {
+							console.log('enter')
+							canvas[0].classList.add('pointer')
+						}}
+						onPointerLeave={() => {
+							console.log('leave')
+							canvas[0].classList.remove('pointer')
+						}}
+						object={githubModel.scene}
+						scale={[gitHubPosition.scale, gitHubPosition.scale, gitHubPosition.scale]}
+					></primitive>
+					{/* <CuboidCollider
+						rotation={[Math.PI / 2, 0, Math.PI / 2]}
+						args={[0.4, 0.05, 0.4]}
+					/> */}
+				</RigidBody>
+			</>
+		)
+	}
 }
 
 useGLTF.preload('./model.gltf')

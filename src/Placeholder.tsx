@@ -10,10 +10,10 @@ const Placeholder: FC<IProps> = (props: IProps) => {
 			position={props.position}
 			scale={props.scale}
 		>
-			<boxGeometry args={[1, 1, 1, 2, 2, 2]} />
+			<boxGeometry args={[3, 3, 3, 2, 2, 2]} />
 			<meshBasicMaterial
 				wireframe
-				color='red'
+				color='black'
 			/>
 		</mesh>
 	)

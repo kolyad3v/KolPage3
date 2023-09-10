@@ -1,13 +1,17 @@
 import { Html, useGLTF } from '@react-three/drei'
-import { FC } from 'react'
+import { FC, useRef, useState } from 'react'
 
 export const Laptop: FC<{}> = () => {
 	const computer = useGLTF('./laptop.gltf')
+
+	const laptop = useRef()
 	return (
 		<>
 			<primitive
 				object={computer.scene}
 				position-y={-1.2}
+				// onScroll={eventHandler}
+				ref={laptop}
 			>
 				<Html
 					transform
