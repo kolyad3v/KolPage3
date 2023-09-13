@@ -1,7 +1,7 @@
 // import { config, useSpring } from '@react-spring/three'
 import { ContactShadows, Float, useGLTF } from '@react-three/drei'
 import { EffectComposer, Outline, Bloom } from '@react-three/postprocessing'
-import { Leva, useControls } from 'leva'
+import { useControls } from 'leva'
 import ReactIcon from './ReactIcon'
 
 export const Icons = () => {
