@@ -1,4 +1,4 @@
-import { PresentationControls, Sky, Text } from '@react-three/drei'
+import { PresentationControls, Text } from '@react-three/drei'
 
 import { FC, Suspense, useState } from 'react'
 
@@ -13,6 +13,7 @@ import { GitHubIcon } from './GitHubIcon'
 import { useControls } from 'leva'
 import { Loader } from './Loader'
 import MagGlass from './MagGlass'
+import Lighting from './Lighting'
 
 export const Experience: FC<{}> = () => {
 	const [Zoom, setZoom] = useState(false)
@@ -51,10 +52,11 @@ export const Experience: FC<{}> = () => {
 		})
 	}
 	const color = useControls({
-		value: 'white',
+		value: '#0d1117',
 	})
 	return (
 		<>
+			{/* <Perf /> */}
 			<color
 				attach='background'
 				args={[color.value]}
@@ -62,35 +64,20 @@ export const Experience: FC<{}> = () => {
 			{/* <OrbitControls></OrbitControls> */}
 			{Zoom && <Rig />}
 			{ZoomOut && <RigOut />}
-			<Sky
-				distance={450000}
-				sunPosition={[0, 1, 0]}
-				inclination={0}
-				azimuth={0.25}
-			/>
-			{/* <Environment preset='forest' /> */}
-
+			<MagGlass zoomToScreen={zoomToScreen} />
+			<Lighting />
 			<Text
 				font='./majorMono.woff'
 				fontSize={0.2}
 				position={[2.5, 1.5, -0.5]}
 				rotation-y={-1}
-				color={'black'}
-				// // maxWidth={2}
+				color={'white'}
 			>
 				{'nick gillham'}
 			</Text>
 
-			<directionalLight
-				position={[-10, 10, 5]}
-				intensity={1}
-			/>
-			<ambientLight intensity={0.5} />
-			{/* <Stage /> */}
-			<MagGlass zoomToScreen={zoomToScreen} />
 			<Suspense fallback={<Loader />}>
 				<Icons />
-				{/* <Float rotationIntensity={0.4}> */}
 				<rectAreaLight
 					width={2.5}
 					height={1.65}
@@ -111,14 +98,13 @@ export const Experience: FC<{}> = () => {
 						<GitHubIcon openGitHubHatch={openGitHubHatch} />
 						<RigidBody
 							restitution={0.2}
+							friction={0.5}
 							type='fixed'
 						>
 							<Laptop />
 						</RigidBody>
 					</PresentationControls>
 				</Physics>
-
-				{/* </Float> */}
 			</Suspense>
 		</>
 	)

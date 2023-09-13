@@ -1,11 +1,11 @@
 // import { config, useSpring } from '@react-spring/three'
 import { ContactShadows, Float, useGLTF } from '@react-three/drei'
-import { useControls } from 'leva'
-import { useRef } from 'react'
+import { EffectComposer, Outline, Bloom } from '@react-three/postprocessing'
+import { Leva, useControls } from 'leva'
+import ReactIcon from './ReactIcon'
 
 export const Icons = () => {
 	const CSharp = useGLTF('./CSharp.glb')
-	const reactModel = useGLTF('./react_logo.glb')
 	const vueModel = useGLTF('./vuejs.glb')
 
 	const cSharpPosition = useControls('csharp', {
@@ -27,24 +27,27 @@ export const Icons = () => {
 		scale: 0.08,
 	})
 
-	let vueMod = useRef()
-	const runVueAnimation = () => {
-		console.log('vue clicked')
-		console.log(vueMod.current)
-	}
+	const bloomProps = useControls({
+		luminanceThreshold: 0.8,
+		mipmapBlur: true,
+		luminanceSmoothing: 0.1,
+		intensity: 1,
+	})
 
 	return (
 		<>
+			<EffectComposer multisampling={8}>
+				<Bloom {...bloomProps} />
+				<Outline />
+			</EffectComposer>
 			<Float
 				speed={0.8}
 				floatIntensity={0.2}
 			>
 				<primitive
-					ref={vueMod}
 					object={vueModel.scene}
 					position={[vuePosition.x, vuePosition.y, vuePosition.z]}
 					scale={[vuePosition.scale, vuePosition.scale, vuePosition.scale]}
-					onClick={runVueAnimation}
 				></primitive>
 			</Float>
 
@@ -52,11 +55,10 @@ export const Icons = () => {
 				speed={0.8}
 				floatIntensity={0.2}
 			>
-				<primitive
-					object={reactModel.scene}
+				<ReactIcon
+					scale={reactPosition.scale}
 					position={[reactPosition.x, reactPosition.y, reactPosition.z]}
-					scale={[reactPosition.scale, reactPosition.scale, reactPosition.scale]}
-				></primitive>
+				/>
 			</Float>
 
 			<Float

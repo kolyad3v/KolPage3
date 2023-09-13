@@ -17,6 +17,7 @@ export const GitHubIcon: FC<IProps> = (props: IProps) => {
 		rotation: 4.54,
 	})
 	const githubModel = useGLTF('./github.glb')
+
 	const eventHandler = () => {
 		window.open('https://github.com/kolyad3v', '_blank')
 	}
@@ -60,4 +61,4 @@ export const GitHubIcon: FC<IProps> = (props: IProps) => {
 	}
 }
 
-useGLTF.preload('./model.gltf')
+useGLTF.preload('./github.glb')
