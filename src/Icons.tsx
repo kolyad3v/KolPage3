@@ -1,7 +1,7 @@
 // import { config, useSpring } from '@react-spring/three'
 import { ContactShadows, Float, useGLTF } from '@react-three/drei'
-import { EffectComposer, Outline, Bloom } from '@react-three/postprocessing'
-import { Leva, useControls } from 'leva'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
+import { useControls } from 'leva'
 import ReactIcon from './ReactIcon'
 
 export const Icons = () => {
@@ -36,10 +36,8 @@ export const Icons = () => {
 
 	return (
 		<>
-			<Leva hidden />
 			<EffectComposer multisampling={8}>
 				<Bloom {...bloomProps} />
-				<Outline />
 			</EffectComposer>
 			<Float
 				speed={0.8}

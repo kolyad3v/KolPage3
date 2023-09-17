@@ -10,10 +10,11 @@ import { useFrame } from '@react-three/fiber'
 import { Icons } from './Icons'
 import { Physics, RigidBody } from '@react-three/rapier'
 import { GitHubIcon } from './GitHubIcon'
-import { useControls } from 'leva'
+import { Leva, useControls } from 'leva'
 import { Loader } from './Loader'
 import MagGlass from './MagGlass'
 import Lighting from './Lighting'
+import ChessPiece from './ChessPiece'
 
 export const Experience: FC<{}> = () => {
 	const [Zoom, setZoom] = useState(false)
@@ -54,8 +55,17 @@ export const Experience: FC<{}> = () => {
 	const color = useControls({
 		value: '#0d1117',
 	})
+
+	const recentProjectProps = useControls('recent projects', {
+		fontSize: 0.1,
+		position: [0.3, 0.3, 3],
+		rotation: [0, -0.7, 0],
+	})
+
 	return (
 		<>
+			<Leva hidden />
+
 			{/* <Perf /> */}
 			<color
 				attach='background'
@@ -75,9 +85,16 @@ export const Experience: FC<{}> = () => {
 			>
 				{'nick gillham'}
 			</Text>
-
+			<Text
+				font='./majorMono.woff'
+				{...recentProjectProps}
+				color={'white'}
+			>
+				{'recent projects'}
+			</Text>
 			<Suspense fallback={<Loader />}>
 				<Icons />
+				<ChessPiece />
 				<rectAreaLight
 					width={2.5}
 					height={1.65}
@@ -91,7 +108,7 @@ export const Experience: FC<{}> = () => {
 						global
 						rotation={[0.13, 0.1, 0]}
 						polar={[-0.4, 0.2]}
-						azimuth={[-1, 1]}
+						azimuth={[-1, 0.5]}
 						config={{ mass: 2, tension: 400 }}
 						snap={{ mass: 4, tension: 400 }}
 					>
