@@ -5,7 +5,7 @@ import { FC, Suspense, useState } from 'react'
 import { Laptop } from './Laptop'
 import { Vector3 } from 'three'
 
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 
 import { Icons } from './Icons'
 import { Physics, RigidBody } from '@react-three/rapier'
@@ -14,7 +14,6 @@ import { Leva, useControls } from 'leva'
 import { Loader } from './Loader'
 import MagGlass from './MagGlass'
 import Lighting from './Lighting'
-import ChessPiece from './ChessPiece'
 
 export const Experience: FC<{}> = () => {
 	const [Zoom, setZoom] = useState(false)
@@ -37,11 +36,12 @@ export const Experience: FC<{}> = () => {
 
 	const [openGitHubHatch, setOpenGitHubHatch] = useState(false)
 
+	useThree(({ camera }) => camera.lookAt(0, 0.5, 0))
 	function Rig() {
 		return useFrame(({ camera }) => {
 			vec.set(-0.014147792215132737, 1.636652515918077, 3.5)
 			camera.position.lerp(vec, 0.025)
-			camera.lookAt(0, 0, 0)
+			camera.lookAt(0, 0.5, 0)
 		})
 	}
 
@@ -49,7 +49,7 @@ export const Experience: FC<{}> = () => {
 		return useFrame(({ camera }) => {
 			vec.set(-4, 1, 5)
 			camera.position.lerp(vec, 0.025)
-			camera.lookAt(0, 0, 0)
+			camera.lookAt(0, 0.5, 0)
 		})
 	}
 	const color = useControls({
@@ -94,7 +94,7 @@ export const Experience: FC<{}> = () => {
 			</Text>
 			<Suspense fallback={<Loader />}>
 				<Icons />
-				<ChessPiece />
+
 				<rectAreaLight
 					width={2.5}
 					height={1.65}
