@@ -10,7 +10,7 @@ interface IProps {}
 const ChessPiece: FC<IProps> = () => {
 	const model = useGLTF('./lowPolyKing.glb')
 	const eventHandler = () => {
-		window.open('https://chessnchill.com', '_blank')
+		window.open('https://chessbean.xyz', '_blank')
 	}
 	const canvas = document.getElementsByTagName('canvas')
 	const chessPieceProps = useControls('king', {
@@ -25,9 +25,7 @@ const ChessPiece: FC<IProps> = () => {
 
 	const kingRef = useRef<THREE.Mesh>(null!)
 
-	useFrame((state: RootState) => {
-		const elapsedTime = state.clock.getElapsedTime()
-
+	useFrame((_state: RootState, delta: number) => {
 		// kingRef.current.rotation.x =
 		// 	Math.cos(elapsedTime * chessPieceProps.rotationMultiplier.x) /
 		// 	chessPieceProps.rotationAmplitude.x
@@ -36,8 +34,8 @@ const ChessPiece: FC<IProps> = () => {
 		// 	Math.sin(elapsedTime * chessPieceProps.rotationMultiplier.z) /
 		// 	chessPieceProps.rotationAmplitude.z
 
-		kingRef.current.rotation.y =
-			Math.sin(elapsedTime * chessPieceProps.rotationMultiplier.y) /
+		kingRef.current.rotation.y +=
+			Math.sin(delta * chessPieceProps.rotationMultiplier.y) /
 			chessPieceProps.rotationAmplitude.y
 	})
 

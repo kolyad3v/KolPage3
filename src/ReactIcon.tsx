@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import { RootState, useFrame } from '@react-three/fiber'
+
 // import { easing } from 'maath'
 
 type GLTFResult = GLTF & {
@@ -29,7 +30,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
 	const [changeGlow, setChangeGlow] = useState(false)
 
-	const runReactModelClickAnimation = (state: any) => {
+	const runReactModelClickAnimation = (state: RootState) => {
 		if (changeGlow) {
 			materials['Material.002'].emissiveIntensity =
 				Math.sin(10 * state.clock.elapsedTime) * 2 + 6
@@ -41,15 +42,19 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 
 	useFrame((state: RootState) => {
 		runReactModelClickAnimation(state)
-		// console.log(Math.sin(delta) * 1000)
 	})
+	// const [glow, setGlow] = useState(false)
+	// const { glowScale } = useSpring({
+	// 	glowScale: glow ? 4 : 1,
+	// 	config: config.default,
+	// })
+
+	// const [first] = useState(materials['Material.002'])
 
 	return (
 		<group
 			{...props}
 			dispose={null}
-			onPointerEnter={() => setChangeGlow(true)}
-			onPointerLeave={() => setChangeGlow(false)}
 		>
 			<group scale={0.01}>
 				<mesh
@@ -62,6 +67,7 @@ export default function Model(props: JSX.IntrinsicElements['group']) {
 					scale={[39.166, 39.166, 52.734]}
 				/>
 				<mesh
+					// onPointerEnter={() => setGlow(true)}
 					onPointerEnter={() => setChangeGlow(true)}
 					onPointerLeave={() => setChangeGlow(false)}
 					scale={[39.166, 39.166, 52.734]}
