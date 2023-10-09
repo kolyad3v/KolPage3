@@ -1,4 +1,5 @@
 import { useControls } from 'leva'
+import { K_vector3Array } from '.'
 
 export const floatProps = useControls('float', {
 	speed: 1, // Animation speed, defaults to 1
