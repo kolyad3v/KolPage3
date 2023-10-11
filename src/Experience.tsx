@@ -1,4 +1,4 @@
-import { PresentationControls, Text } from '@react-three/drei'
+import { ContactShadows, PresentationControls, Text } from '@react-three/drei'
 
 import { FC, Suspense, useState } from 'react'
 
@@ -7,13 +7,13 @@ import { Vector3 } from 'three'
 
 import { useFrame, useThree } from '@react-three/fiber'
 
-import { Icons } from './Icons'
 import { Physics, RigidBody } from '@react-three/rapier'
 import { GitHubIcon } from './GitHubIcon'
 import { Leva, useControls } from 'leva'
 import { Loader } from './Loader'
 import MagGlass from './MagGlass'
 import Lighting from './Lighting'
+import { Perf } from 'r3f-perf'
 
 export const Experience: FC<{}> = () => {
 	const [Zoom, setZoom] = useState(false)
@@ -56,19 +56,13 @@ export const Experience: FC<{}> = () => {
 		value: '#0d1117',
 	})
 
-	const recentProjectProps = useControls('recent projects', {
-		fontSize: 0.1,
-		position: [0.3, 0.3, 3],
-		rotation: [0, -0.7, 0],
-	})
-
 	return (
 		<>
 			<Leva hidden />
 
-			{/* <Perf /> */}
+			<Perf />
 			<color
-				attach='background'
+				attach="background"
 				args={[color.value]}
 			/>
 			{/* <OrbitControls></OrbitControls> */}
@@ -77,7 +71,7 @@ export const Experience: FC<{}> = () => {
 			<MagGlass zoomToScreen={zoomToScreen} />
 			<Lighting />
 			<Text
-				font='./majorMono.woff'
+				font="./majorMono.woff"
 				fontSize={0.2}
 				position={[2.5, 1.5, -0.5]}
 				rotation-y={-1}
@@ -85,16 +79,8 @@ export const Experience: FC<{}> = () => {
 			>
 				{'nick gillham'}
 			</Text>
-			<Text
-				font='./majorMono.woff'
-				{...recentProjectProps}
-				color={'white'}
-			>
-				{'recent projects'}
-			</Text>
-			<Suspense fallback={<Loader />}>
-				<Icons />
 
+			<Suspense fallback={<Loader />}>
 				<rectAreaLight
 					width={2.5}
 					height={1.65}
@@ -116,13 +102,19 @@ export const Experience: FC<{}> = () => {
 						<RigidBody
 							restitution={0.2}
 							friction={0.5}
-							type='fixed'
+							type="fixed"
 						>
 							<Laptop />
 						</RigidBody>
 					</PresentationControls>
 				</Physics>
 			</Suspense>
+			<ContactShadows
+				opacity={1}
+				scale={10}
+				blur={1}
+				position-y={-1.4}
+			/>
 		</>
 	)
 }
