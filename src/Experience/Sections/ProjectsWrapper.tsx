@@ -1,22 +1,42 @@
 import { useControls } from 'leva'
 import React, { FC } from 'react'
 import ProjectModel from './ProjectModel'
+import Project from './Project'
+import { K_vector3Array } from '../Utils'
 
 const ModelsWrapper: FC = () => {
-	const chessPieceProps = useControls('chess piece', {
-		position: [1.7, -0.9, 2.4],
+	const chessControls = useControls('ChessProject', {
+		position: [3, 1, -7],
 		scale: 0.4,
 		rotation: [0, 0, 0],
 	})
-	const gitHubPosition = useControls('github', {
-		position: [1.7, -0.9, 2.4],
-		scale: 0.3,
-		rotation: [0, Math.PI + 1, 0],
+	const mushroomControls = useControls('MushroomManiaProject', {
+		position: [3, 1, -7],
+		scale: 0.4,
+		rotation: [0, 0, 0],
+	})
+	const stayThePathControls = useControls('stayThePathProject', {
+		position: [3, 1, -7],
+		scale: 0.4,
+		rotation: [0, 0, 0],
 	})
 
 	return (
 		<>
-			<ProjectModel
+			<Project
+				name="Chess Project"
+				{...chessControls}
+			/>
+			<Project
+				name="MushroomManiaProject"
+				{...mushroomControls}
+			/>
+			<Project
+				name="stayThePathProject"
+				{...stayThePathControls}
+			/>
+
+			{/* <ProjectModel
 				projectUrl='https://chessbean.xyz'
 				modelUrl='./lowPolyKing.glb'
 				modelProps={chessPieceProps}
@@ -25,7 +45,7 @@ const ModelsWrapper: FC = () => {
 				projectUrl='https://github.com/kolyad3v'
 				modelUrl='./github.glb'
 				modelProps={gitHubPosition}
-			/>
+			/> */}
 		</>
 	)
 }

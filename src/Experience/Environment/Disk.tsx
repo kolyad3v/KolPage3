@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { useControls } from 'leva'
-import { IPosAndRotControls } from '../Utils'
 export const Disk: FC = () => {
 	const spacePosition = useControls('Disk', {
 		position: [0, 0, 0],

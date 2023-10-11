@@ -18,8 +18,6 @@ export const Camera = () => {
 	useThree(({ camera }) => {
 		camera.position.set(x, y, z)
 		camera.lookAt(xLookAt, yLookAt, zLookAt)
-
-		console.log(camera)
 	})
 
 	useThree((state: RootState) => {

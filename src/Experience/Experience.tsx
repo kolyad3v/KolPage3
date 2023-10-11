@@ -1,4 +1,4 @@
-// import { OrbitControls } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { FC, Suspense } from 'react'
 import { Loader } from './Utils/Loader'
 import { Perf } from 'r3f-perf'
@@ -10,6 +10,7 @@ import { Landing } from './Sections/Landing'
 import { Disk } from './Environment/Disk'
 import { useControls } from 'leva'
 import { Camera } from './Utils/Camera'
+import ProjectsWrapper from './Sections/ProjectsWrapper'
 
 export const Experience: FC = () => {
 	const spacePosition = useControls('main', {
@@ -34,6 +35,7 @@ export const Experience: FC = () => {
 				<Suspense fallback={<Loader />}>
 					<Disk />
 					<Landing />
+					<ProjectsWrapper />
 				</Suspense>
 			</group>
 		</>
