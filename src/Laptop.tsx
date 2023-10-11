@@ -15,12 +15,12 @@ export const Laptop: FC<{}> = () => {
 			>
 				<Html
 					transform
-					wrapperClass='htmlScreen'
+					wrapperClass="htmlScreen"
 					distanceFactor={1.17}
 					position={[0, 1.56, -1.4]}
 					rotation-x={-0.256}
 				>
-					<iframe src='https://tubular-khapse-b9fbb3.netlify.app' />
+					<iframe src="https://laptop-portfolio-pi.vercel.app/" />
 				</Html>
 			</primitive>
 		</>
