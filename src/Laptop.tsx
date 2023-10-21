@@ -10,7 +10,6 @@ export const Laptop: FC<{}> = () => {
 			<primitive
 				object={computer.scene}
 				position-y={-1.2}
-				// onScroll={eventHandler}
 				ref={laptop}
 			>
 				<Html
@@ -20,7 +19,7 @@ export const Laptop: FC<{}> = () => {
 					position={[0, 1.56, -1.4]}
 					rotation-x={-0.256}
 				>
-					<iframe src="https://laptop-portfolio-pi.vercel.app/" />
+					<iframe src="https://taupe-truffle-95e379.netlify.app" />
 				</Html>
 			</primitive>
 		</>
